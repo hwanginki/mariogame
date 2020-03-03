@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- 주소 생성! 없으면 암것도 안뜸 -->
+		<meta charset="utf-8" />
+
+		<title>Super Mario World</title>
+		
+		<link rel="stylesheet" href="css/menu.css" type="text/css" media="screen, projection" />
+		<link rel="stylesheet" href="css/editor.css" type="text/css" media="screen, projection" />
+		<link rel="stylesheet" href="css/game.css" type="text/css" media="screen, projection" />
+		<link rel="stylesheet" href="css/controlls.css" type="text/css" media="screen, projection" />
+		<link rel="stylesheet" href="css/itemnotes.css" type="text/css" media="screen, projection" />
+		<link rel="stylesheet" href="css/Cookie.css" type="text/css" media="screen, projection" />
+
+		<!-- 부트스트랩4 사용-->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+		
+		<link rel="shortcut icon" type="image/x-icon" href="icon.ico" />
+	</head>
+	
+	<body>
+		<style>
+			.fakeimg {
+				height: 200px;
+				background: #aaa;
+			}
+		</style>
+		
+		<canvas id="canvas" style="display: none;"></canvas>
+		
+		<!-- Game Musik -->
+		
+		<audio id="GameMusic" preload="auto" loop>
+			<source src="audio/music.ogg" type="audio/ogg" />
+            <source src="audio/music.mp3" type="audio/mp3" />
+        </audio>
+		<audio id="InvincibilityMusic" preload="auto">
+			<source src="audio/invincible.ogg" type="audio/ogg" />
+            <source src="audio/invincible.mp3" type="audio/mp3" />
+        </audio>
+		<audio id="DieMusic" preload="auto">
+			<source src="audio/die.ogg" type="audio/ogg" />
+            <source src="audio/die.mp3" type="audio/mp3" />
+        </audio>
+		<audio id="SuccessMusic" preload="auto">
+			<source src="audio/success.ogg" type="audio/ogg" />
+            <source src="audio/success.mp3" type="audio/mp3" />
+        </audio>
+		<audio id="GameOverMusic" preload="auto">
+			
+			<source src="audio/gameover.ogg" type="audio/ogg" />
+            <source src="audio/gameover.mp3" type="audio/mp3" />
+        </audio>
+		<audio id="EndingMusic" preload="auto">
+			<source src="audio/peach.ogg" type="audio/ogg" />
+            <source src="audio/peach.mp3" type="audio/mp3" />
+        </audio>
+		<audio id="CreditMusic" preload="auto">
+			<source src="audio/ending.ogg" type="audio/ogg" />
+            <source src="audio/ending.mp3" type="audio/mp3" />
+        </audio>
+		
+		<!-- Menu Musik -->
+		<audio autoplay loop preload="auto" id="menuMusic">
+			<source src="audio/menu.ogg" type="audio/ogg" />
+			<source src="audio/menu.mp3" type="audio/mp3" />
+        </audio>
+        
+        <!-- Editor Musik -->
+		<audio loop preload="auto" id="editorMusic">
+			<source src="audio/editor.ogg" type="audio/ogg" />
+			<source src="audio/editor.mp3" type="audio/mp3" />
+        </audio>
+		
+		<!-- <div id="loading">
+			<h1> 로딩중... </h1><br /><br />
+		</div> -->
+		
+					<!-- 조작법 -->
+					<div id="controllpage"> 
+						<div id="exit_controllpage">X</div>
+						<div id="rightarrow"> <img src="arrow.png" width="50px" height="30px" alt="" /> </div>
+						<div id="leftarrow"> <img src="arrow.png" width="50px" height="30px" alt="" /> </div>
+						<div id="uparrow"> <img src="arrow.png" width="50px" height="30px" alt="" /> </div>
+						<div id="downarrow"> <img src="arrow.png" width="50px" height="30px" alt="" /> </div>
+						<div id="Strg">Ctrl</div>
+						
+						<div id="texts">
+							<div id="rightarrowtext" class="text">: 오른쪽방향</div>
+							<div id="leftarrowtext" class="text">: 왼쪽방향</div>
+							<div id="uparrowtext" class="text">: 위방향</div>
+							<div id="downarrowtext" class="text">: 아래방향</div>
+							<div id="Strgtext" class="text">: 빠른대쉬 + 공격</div>
+						</div>
+        			</div>
+					<!-- <div id="back_to_menu">닫기</div> -->
+        
+       				 <!-- 아이템 및 몬스터 설명 -->
+					<div id="itemnotepage"> 
+						<div id="exit_itemnotepage">X</div>
+							
+						<div id="rightarrow"> <img src="itemimg/Mario-icon.png" width="50px" height="30px" alt="Mario" /> </div>
+						<div id="rightarrow1"> <img src="itemimg/Coin-icon.png" width="50px" height="30px" alt="Coin" /> </div>
+						<div id="rightarrow2"> <img src="itemimg/Mushroom-icon.png" width="50px" height="30px" alt="Mushroom" /> </div>
+						<div id="rightarrow3"> <img src="itemimg/Flower-icon.png" width="50px" height="30px" alt="Flower" /> </div>
+						<div id="rightarrow4"> <img src="itemimg/Star-icon.png" width="50px" height="30px" alt="Star" /> </div>
+						<div id="rightarrow5"> <img src="itemimg/Block-Question-icon.png" width="50px" height="30px" alt="Block-Question" /> </div>
+							
+						<div id="texts">
+						<div id="rightarrowtext" class="text">: 마리오</div>
+						<div id="leftarrowtext" class="text">: 코인</div>
+						<div id="uparrowtext" class="text">: 2단계 성장</div>
+						<div id="uparrowtext" class="text">: 3단계 성장(공격가능)</div>
+						<div id="downarrowtext" class="text">: 무적시간 10초</div>
+						<div id="downarrowtext" class="text">:
+							<img src="itemimg/Mushroom-icon.png" width="50px" height="30px"> or
+							<img src="itemimg/Flower-icon.png" width="50px" height="30px"> or
+							<img src="itemimg/Star-icon.png" width="50px" height="30px">
+						</div>
+						</div>
+					</div>
+					<!-- <div id="back_to_menu">닫a기</div> -->
+		
+					<div id="cookiepage">
+						<div id="cookietext">마지막으로 저장된 게임을 계속하거나 새 게임을 시작하겠습니까?</div>
+						<div id="exit_cookiepage">X</div>
+						<div id="continue">네, 저장된 게임 계속할래요.</div>
+						<div id="newgame2">아니요, 다시 새로할래요.</div>
+					</div>    
+					
+					<div id="menu">
+						<img id="img1dia"/>
+						<img id="img2dia"/>
+						<div id="menu_buttons">
+							<div id="newgame">시작</div>
+							<div id="controlls">조작법</div>
+							<div id="itemnotes">아이템 설명</div>
+						</div>
+					</div>
+
+					<div id="background">
+						<div id="world">
+							<div id="number_of_coins"></div>
+							<div id="coin" style="background-image: url(&quot;mario-img/mario-objects.png&quot;);" ></div>
+							<div id="number_of_lives"></div>
+							<div id="lives" style="background-image: url(&quot;mario-img/mario-sprites.png&quot;);"></div>
+						</div>
+						<div id="levelloading"></div>
+					</div>
+
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
+		<!-- Menu Skripte -->
+    	<script type="text/javascript" src="script/diashow.js"></script>
+		<script type="text/javascript" src="script/Handler.js"></script>
+
+		<!-- Editor Skripte -->
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="script/EditorScripts.js"></script>
+        <script type="text/javascript" src="script/EditorMsgBoxes.js"></script>
+		<script type="text/javascript" src="script/DragAndDrop.js"></script>
+
+		<!-- Game Skripte -->
+		<script src="script/jquery.spritely-0.6.1.js"></script>
+		<script src="script/Hero.js"></script>
+		<script src="script/Bullet.js"></script>
+		<script src="script/Coin.js"></script>
+		<script src="script/CoinBox.js"></script>
+		<script src="script/MultipleCoinBox.js"></script>
+		<script src="script/StarBox.js"></script>
+		<script src="script/MushroomBox.js"></script>
+		<script src="script/StaticPlant.js"></script>
+		<script src="script/PipePlant.js"></script>
+		<script src="script/SpikedTurtle.js"></script>
+		<script src="script/BallMonster.js"></script>
+		<script src="script/GreenTurtle.js"></script>
+		<script src="script/myLevel.js"></script>
+		<script src="script/SoundManager.js"></script>
+		<script src="script/GameLoop.js"></script>
+		<script src="script/Cookie.js"></script>
+		
+		<script>
+			
+			var levelarray;						//hier werden die Leveltiles abgelegt -> geschieht in DefaultLevel() oder im Leveleditor
+			var levelimage;						//Abbild des Levels -> wird in LoadLevel() als *.png abgespeichert
+			var objects;						//die Objekttiles des Spiels -> werden in LoadLevel() als *.png geladen
+			var custom = false;					//Custom- oder Defaultlevel?
+			
+			var mario;							//unsere Spielfigur mit all ihren interessierenden Eigenschaften
+			var coins = new Array();			//die Münzen im Level
+			var coinboxes = new Array();		//die Münzboxen
+			var multiple_coinboxes = new Array();//die multiplen, zeitlich begrenzten Münzboxen
+			var starboxes = new Array();		//die Sternboxen
+			var mushroomboxes = new Array();	//die Pilzboxen
+			var plants = new Array();			//die fleischfressenden Pflanzen
+			var enemies = new Array();			//sämtliche Gegner, die man im Laufe des Levels auslöst
+			
+			var screenwidth, width04, width06, screenpos_x, mario_x, levelwidth;	//zur Berechnung des richtigen Bildschirmausschnitts und der Position der Objekte auf dem Bildschirm
+			
+			var leftkey_down = false, rightkey_down = false;	//linke bzw. rechte Richtungstaste gedrückt? Nötig, um schnelle Richtungswechsel nicht abzuwürgen...
+			var s_down = false, k_down = false, i_down = false, p_down = false;		//für den Levelskip-Cheat
+			var Strg_down = false, y_down = false;									//für die 2 Tasten zum schnellen Laufen
+			
+			var sounds, music, invincibilityMusic, gameoverMusic, endingMusic, successMusic, creditMusic, dieMusic, menuMusic, editorMusic;
+			
+			var savegame = false, cookie_lives, cookie_coins, cookie_level, cookie_state, cookie_shooter;		//fürs Auslesen der Cookies
+
+			$(document).ready(function() {
+											// Diashow starten
+											animation();
+											// Browserunterstützung testen
+											var canvas_support = document.getElementById('canvas');
+											if(!canvas_support.getContext) 
+											{
+												$('#loading').url('backgrounds/mario-background_6.png');
+											}
+											else 
+											{
+												$('#background').hide();    // Spiel verstecken									
+												$('#loading').fadeOut(1500); // 지속시간
+												// $('body').css({'overflow': 'auto'}); // Scrollbalken herstellen
+												
+											}
+
+											mario = null;	//noch keine Spielfigur erstellt!!!
+											
+											//Musik und Sounds:
+											sounds = new soundManager();				//lade sämtliche Spielsounds
+											music = document.getElementById('GameMusic');				//Ingame-Musik
+											invincibilityMusic = document.getElementById('InvincibilityMusic');	//wenn Mario unbesiegbar wird
+											gameoverMusic = document.getElementById('GameOverMusic');	//bei Game Over
+											endingMusic = document.getElementById('EndingMusic');		//Mario trifft Daisy
+											successMusic = document.getElementById('SuccessMusic');		//Mario hat Level gemeistert
+											creditMusic = document.getElementById('CreditMusic');		//Credits
+											dieMusic = document.getElementById('DieMusic');				//Mario stirbt
+											menuMusic = document.getElementById('menuMusic');			//Menu-Musik
+											editorMusic = document.getElementById('editorMusic');		//Editor-Musik
+                                            
+                                            // 효과 메서드(hide, show, toggle)
+                                            $('#controllpage').hide(); // 기본 창 기본 숨기는다
+                                            $('#itemnotepage').hide(); // 창 숨기는다
+											$('#cookiepage').hide();
+											$('#back_to_menu').hide();
+											$('#levelloading').hide();
+											
+											screenwidth = parseInt($('#world').css('width'));
+											width04 = Math.floor( 0.4 * screenwidth - 40 );	//wie weit kann Mario nach links laufen, bis das Level mitwandert?
+											width06 = Math.floor( 0.6 * screenwidth - 40 );	//wie weit kann Mario nach rechts laufen, bis das Level mitwandert?
+											
+											$('#coin').sprite( { fps: 10 , no_of_frames: 4 } );	//damit sich die Münze links oben dreht
+											$('#lives').sprite( { fps: 6 , no_of_frames: 6 , rewind: true } );	//damit sich der Mariokopf rechts oben dreht
+											
+											// Editor Array initialisieren
+											init_editor();
+											
+											//Mausevents zuweisen:
+											$('#editor_back').click( function() { editorBackHandler(); } );
+											$('#exit_controllpage').click( function() { exit_controllpageHandler(); } );
+                                            $('#exit_itemnotepage').click( function() { exit_itemnotepageHandler(); } );
+                                            $('#back_to_menu').click( function() { back_to_menuHandler(); } );
+											$('#newgame').click( function() { newgameHandler(); } );
+                                            $('#controlls').click( function() { controllsHandler(); } );
+                                            $('#itemnotes').click( function() { itemnotesHandler(); } );
+											$('#exit_cookiepage').click( function() { exit_cookiepageHandler(); } );
+											$('#newgame2').click( function() { newgame2Handler(); } );
+											$('#continue').click( function() { continueHandler(); } );
+										 });
+			
+		</script>
+		
+	</body>
+	
+</html>
