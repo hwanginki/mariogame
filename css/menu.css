@@ -1,0 +1,113 @@
+/* html, body {
+	padding: 0;
+	margin: 0;
+    background: #2A5FFF;
+	background: -webkit-linear-gradient(left, #2A5FFF, #7FDFFF, #2A5FFF);
+	background: -moz-linear-gradient(left, #2A5FFF, #7FDFFF, #2A5FFF);
+	background: -o-linear-gradient(left, #2A5FFF, #7FDFFF, #2A5FFF);
+	background: linear-gradient(left, #2A5FFF, #7FDFFF, #2A5FFF);
+} */
+/* body {
+	font-family: 'Comic Sans MS' , 'Georgia' , 'Arial';
+	color: #000;
+	font-size: 12px;
+	overflow: hidden;
+} */
+
+/* a:link, a:visited {
+	color: #f00;
+	text-decoration: none;
+} */
+
+/* a:active, a:hover {
+	text-decoration: underline;	
+} */
+
+/* img {
+	border: 0;
+} */
+
+#menu
+{
+	height: 480px;
+	width: 700px;			
+	position: absolute;		
+	top: 50%;
+	left: 50%;				
+	margin-top: -240px;		
+	margin-left: -320px;	
+}
+
+#menu_buttons {
+	position: absolute;
+	top: 88%;
+	left: 50%;
+	width: 432px;
+	margin-left: -200px; /* 216 */
+}
+
+#menu_buttons div, #open_button /* 버튼 */
+{
+	float: left;
+	background: #f90;
+	background: -webkit-linear-gradient(top, #f90, #fb0, #f90);
+	background: -moz-linear-gradient(top, #f90, #fb0, #f90);
+	background: -o-linear-gradient(top, #f90, #fb0, #f90);
+	background: linear-gradient(top, #f90, #fb0, #f90);
+	padding: 5px 10px;
+	margin: 0 10px;
+	width: 100px;
+	text-align: center;
+	border: 2px #000 solid;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	-o-border-radius: 6px;
+	border-radius: 6px;
+	font-weight: bold;
+	font-size: 12px;
+	box-shadow: 1px 1px 5px #333;
+}
+#open_button
+{
+	float: none;
+}
+
+#newgame:hover, #edit:hover, #controlls:hover, #open_button:hover
+{
+	box-shadow: 3px 3px 5px rgb(251, 226, 0);
+	cursor: auto;
+}
+
+#loading
+{
+	width:	50%;
+	height: 50%;
+	background: rgba(166, 255, 0, 0.98);
+	position: absolute;
+	z-index: 0;
+	top: 50%;
+	left: 50%;
+	margin: 5;
+	font-size: 40px;
+	color: rgb(0, 247, 255);
+	text-align: center;
+	padding: 20%;
+}
+
+#img1dia, #img2dia {
+	width: 640px;
+	height: 480px;
+	position: absolute;
+	top: 0;
+	left: 0;	
+}
+
+#menu_audio {
+	display: block;
+	width: 640px;
+	position: absolute;
+	top: 480px;
+	left: 0;
+	margin: 0;
+	padding: 0;
+}
